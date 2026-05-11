@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Juego de Viaje — Un Viaje Tranquilo</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <!-- Pantalla de inicio -->
+  <div id="start-screen">
+    <div class="start-card">
+      <div class="start-icon">&#127983;</div>
+      <h1>Juego de Viaje</h1>
+      <p class="start-sub">Un Viaje Tranquilo</p>
+      <p class="start-desc">Viaja por una ruta de aldeas, mercados, templos y posadas.<br>Acumula puntos, monedas y bendiciones para ganar.</p>
+      <button id="btn-start" onclick="startGame()">Comenzar Viaje</button>
+    </div>
+  </div>
+
+  <!-- Pantalla de juego -->
+  <div id="game-screen" style="display:none">
+
+    <!-- Barra de titulo -->
+    <header id="title-bar">
+      <div class="title-left">
+        <span class="title-icon">&#127983;</span>
+        <div>
+          <h1>Juego de Viaje</h1>
+          <span class="title-sub">Un Viaje Tranquilo</span>
+        </div>
+      </div>
+      <div class="title-right">
+        <span id="turn-info">Turno 1</span>
+        <span class="title-sep">|</span>
+        <span id="score-info">Tu: 0 - Rival: 0</span>
+      </div>
+    </header>
+
+    <!-- Tablero -->
+    <section id="board-section">
+      <div id="board-container">
+        <div id="board-path"></div>
+        <div id="board-spaces"></div>
+      </div>
+      <div id="board-markers"></div>
+      <div id="board-legend">
+        <span class="legend-item"><span class="ldot" style="background:var(--village)"></span>Aldea</span>
+        <span class="legend-item"><span class="ldot" style="background:var(--market)"></span>Mercado</span>
+        <span class="legend-item"><span class="ldot" style="background:var(--temple)"></span>Templo</span>
+        <span class="legend-item"><span class="ldot" style="background:var(--inn)"></span>Posada</span>
+      </div>
+    </section>
+
+    <!-- Zona media: jugadores + accion -->
+    <section id="middle">
+      <div id="panel-human" class="player-panel">
+        <div class="pp-header">
+          <div class="pp-avatar human-avatar">T</div>
+          <div>
+            <div class="pp-name human-color">Tu</div>
+            <div class="pp-pos" id="human-pos">Casilla 0</div>
+          </div>
+        </div>
+        <div class="pp-resources">
+          <div class="res-row"><span class="res-dot coin-dot"></span><span class="res-label">Monedas</span><span class="res-val" id="h-coins">0</span></div>
+          <div class="res-row"><span class="res-dot point-dot"></span><span class="res-label">Puntos</span><span class="res-val" id="h-points">0</span></div>
+          <div class="res-row"><span class="res-dot bless-dot"></span><span class="res-label">Bendiciones</span><span class="res-val" id="h-bless">0</span></div>
+        </div>
+        <div class="pp-score">Total: <span id="h-score">0</span></div>
+      </div>
+
+      <div id="action-area">
+        <div id="action-content"></div>
+        <button id="btn-continue" style="display:none" onclick="doContinue()">Continuar</button>
+      </div>
+
+      <div id="panel-ai" class="player-panel">
+        <div class="pp-header">
+          <div class="pp-avatar ai-avatar">R</div>
+          <div>
+            <div class="pp-name ai-color">Rival</div>
+            <div class="pp-pos" id="ai-pos">Casilla 0</div>
+          </div>
+        </div>
+        <div class="pp-resources">
+          <div class="res-row"><span class="res-dot coin-dot"></span><span class="res-label">Monedas</span><span class="res-val" id="a-coins">0</span></div>
+          <div class="res-row"><span class="res-dot point-dot"></span><span class="res-label">Puntos</span><span class="res-val" id="a-points">0</span></div>
+          <div class="res-row"><span class="res-dot bless-dot"></span><span class="res-label">Bendiciones</span><span class="res-val" id="a-bless">0</span></div>
+        </div>
+        <div class="pp-score">Total: <span id="a-score">0</span></div>
+      </div>
+    </section>
+
+    <!-- Registro -->
+    <section id="log-section">
+      <div class="log-title">Registro del viaje</div>
+      <div id="log-content"></div>
+    </section>
+
+  </div>
+
+  <script src="/static/game.js"></script>
+</body>
+</html>
